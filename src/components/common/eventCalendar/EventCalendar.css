@@ -1,0 +1,32 @@
+.react-calendar__navigation{
+  margin-bottom: 15px;
+}
+.react-calendar__navigation button {
+  background-color: transparent;
+  border: none;
+  padding: 5px;
+  font-weight: bold;
+  font-size: 1rem;
+}
+.react-calendar__tile {
+  border: none;
+  background-color: transparent;
+  height: 30px;
+  width: 30px;
+}
+.react-calendar__tile--active  {
+  background-color: #007205;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.react-calendar__tile--active abbr{
+  color: #ffffff;
+}
+
+[data-bs-theme="light"] .react-calendar__tile {
+  color: black;
+}
+[data-bs-theme="dark"] .react-calendar__tile {
+  color: #d4d4d4; 
+}

@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+$primary: #007205;
+$secondary: #FF0000;
+$font-family-base: "poppins";
+$font-size-base: 0.85rem;
+
+$utilities: (
+  "font-size": (
+    property: font-size,
+    class: fs,
+    values: (
+      7: $font-size-base * 0.95,
+      8: $font-size-base * 0.90,
+      9: $font-size-base * 0.85,
+      10: $font-size-base * 0.80
+    )
+  )
+);
+
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/bootstrap";
