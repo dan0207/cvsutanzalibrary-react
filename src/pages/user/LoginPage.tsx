@@ -1,8 +1,16 @@
 import { useGoogleLogin } from "@react-oauth/google";
 import { FcGoogle } from "react-icons/fc";
 import logo from "../../assets/images/logo.png";
+import axios from "axios";
+import { FormEvent, useState } from "react";
 
 function LoginPage() {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+    console.log("Username: " + username);
+    console.log("Password: " + password);
+
     const handleBackLoginFormBtn = () => {
         window.history.back();
     };
@@ -11,6 +19,18 @@ function LoginPage() {
         onSuccess: (tokenResponse: { access_token: string }) => console.log(tokenResponse),
         onError: () => console.log("Error"),
     });
+
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault();
+        axios
+            .post("", { username, password })
+            .then((result) => {
+                console.log(result);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
     return (
         <>
@@ -34,10 +54,19 @@ function LoginPage() {
 
                         <hr className="hr_login_text" data-content="or continue with username & password" />
 
-                        <form id="" action="" className="needs-validation m-0" method="POST" noValidate>
+                        <form onSubmit={handleSubmit} className="needs-validation m-0" method="POST" noValidate>
                             <div className="form-outline text-start mb-2">
                                 <label className="form-label mb-0">Username</label>
-                                <input type="text" name="username" className="form-control form-control-md" required />
+                                <input
+                                    type="text"
+                                    name="username"
+                                    className="form-control form-control-md"
+                                    autoComplete="off"
+                                    onChange={(e) => {
+                                        setUsername(e.target.value);
+                                    }}
+                                    required
+                                />
                                 <div id="validationUsernameFeedback" className="invalid-feedback fs-7">
                                     Please enter username.
                                 </div>
@@ -45,7 +74,16 @@ function LoginPage() {
 
                             <div className="form-outline text-start">
                                 <label className="form-label mb-0">Password</label>
-                                <input type="password" name="password" className="form-control form-control-md" required />
+                                <input
+                                    type="password"
+                                    name="password"
+                                    className="form-control form-control-md"
+                                    autoComplete="off"
+                                    onChange={(e) => {
+                                        setPassword(e.target.value);
+                                    }}
+                                    required
+                                />
                                 <div id="validationPasswordFeedback" className="invalid-feedback fs-7">
                                     Please enter the password.
                                 </div>
@@ -58,7 +96,7 @@ function LoginPage() {
 
                             <div className="text-danger mb-2 fs-7"></div>
 
-                            <button type="button" className="btn btn-primary btn-md w-100 my-3">
+                            <button type="submit" className="btn btn-primary btn-md w-100 my-3">
                                 Login
                             </button>
                         </form>
